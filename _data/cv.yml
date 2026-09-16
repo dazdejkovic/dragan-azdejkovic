@@ -1,0 +1,26 @@
+cv:
+  name: Dragan Azdejković
+  label: Vanredni profesor
+  location: Beograd, Srbija
+  image: ""
+  summary: Vanredni profesor na Katedri za statistiku i matematiku Ekonomskog fakulteta Univerziteta u Beogradu.
+  sections:
+    Obrazovanje:
+      - institution: Univerzitet u Beogradu
+        area: Ekonomske nauke – kolektivno odlučivanje
+        studyType: Doktorat
+      - institution: Matematičke studije
+        area: Optimizacija
+        studyType: Magistarske studije
+    Akademsko iskustvo:
+      - company: Univerzitet u Beogradu – Ekonomski fakultet
+        position: Vanredni profesor
+        start_date: 2021
+      - company: Univerzitet u Beogradu – Ekonomski fakultet
+        position: Docent
+        start_date: 2012
+        end_date: 2021
+      - company: Univerzitet u Beogradu – Ekonomski fakultet
+        position: Asistent
+        start_date: 1990
+        end_date: 2012

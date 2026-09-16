@@ -1,0 +1,438 @@
+<header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
+    <div class="container">
+      {% if page.permalink != '/' %}
+        <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
+          {% if site.title == 'blank' %}
+            {% if site.first_name %}
+              <span class="font-weight-bold">
+                {{- site.first_name -}}
+              </span>
+            {% endif %}
+            {% if site.middle_name %}
+              {{- site.middle_name -}}
+            {% endif %}
+            {% if site.last_name %}
+              {{- site.last_name -}}
+            {% endif %}
+          {% else %}
+            {{- site.title -}}
+          {% endif %}
+        </a>
+      {% elsif site.enable_navbar_social %}
+        <!-- Social Icons -->
+        <div class="navbar-brand social">{% social_links %}</div>
+      {% endif %}
+      <!-- Navbar Toggle -->
+      <button
+        class="navbar-toggler collapsed navbar-toggler-main"
+        type="button"
+        data-nav-toggle="navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav">
+        <ul class="navbar-nav navbar-menu-list flex-nowrap">
+          {% for page in site.pages %}
+            {% if page.permalink == '/' %} {% assign about_title = page.title %} {% endif %}
+          {% endfor %}
+          <!-- About -->
+          <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
+            <a class="nav-link" href="{{ '/' | relative_url }}">
+              {{- about_title }}
+              {% if page.permalink == '/' %}
+                <span class="sr-only">(current)</span>
+              {% endif %}
+            </a>
+          </li>
+          <!-- Other pages -->
+          {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+          {% for p in sorted_pages %}
+            {% if p.nav and p.autogen == null %}
+              {% if p.dropdown %}
+                {% assign has_active_child = false %}
+                {% for child in p.children %}
+                  {% if page.title == child.title %}
+                    {% assign has_active_child = true %}
+                  {% endif %}
+                  {% if child.children %}
+                    {% for grandchild in child.children %}
+                      {% if page.title == grandchild.title %}
+                        {% assign has_active_child = true %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                <li class="nav-item nav-multilevel {% if page.title == p.title or has_active_child %}active{% endif %}">
+                  <div class="nav-dropdown-head">
+                    <a
+                      class="nav-link"
+                      href="{% if p.permalink contains '://' %}{{ p.permalink }}{% else %}{{ p.url | relative_url }}{% endif %}"
+                    >
+                      {{- p.title }}
+                      {% if page.title == p.title or has_active_child %}
+                        <span class="sr-only">(current)</span>
+                      {% endif %}
+                    </a>
+                    <button
+                      class="nav-level1-mobile-toggle"
+                      type="button"
+                      aria-label="Otvori podmeni {{ p.title }}"
+                      aria-expanded="false"
+                    >
+                      <span aria-hidden="true">▾</span>
+                    </button>
+                  </div>
+
+                  <div class="nav-level1-menu">
+                    {% for child in p.children %}
+                      {% if child.title == 'divider' %}
+                        <div class="dropdown-divider"></div>
+                      {% elsif child.children %}
+                        {% assign has_active_grandchild = false %}
+                        {% for grandchild in child.children %}
+                          {% if page.title == grandchild.title %}
+                            {% assign has_active_grandchild = true %}
+                          {% endif %}
+                        {% endfor %}
+                        <div class="nav-submenu {% if has_active_grandchild %}active{% endif %}">
+                          <div class="nav-submenu-head">
+                            <a
+                              class="dropdown-item nav-submenu-link {% if has_active_grandchild %}active{% endif %}"
+                              href="{% if child.permalink %}{% if child.permalink contains '://' %}{{ child.permalink }}{% else %}{{ child.permalink | relative_url }}{% endif %}{% else %}{{ p.url | relative_url }}{% endif %}"
+                            >
+                              {{- child.title -}}
+                            </a>
+                            <button
+                              class="nav-level2-mobile-toggle"
+                              type="button"
+                              aria-label="Otvori podmeni {{ child.title }}"
+                              aria-expanded="false"
+                            >
+                              <span class="nav-level2-arrow" aria-hidden="true">‹</span>
+                            </button>
+                          </div>
+
+                          <div class="nav-level2-menu">
+                            {% for grandchild in child.children %}
+                              <a
+                                class="dropdown-item {% if page.title == grandchild.title %}active{% endif %}"
+                                href="{% if grandchild.permalink contains '://' %}{{ grandchild.permalink }}{% else %}{{ grandchild.permalink | relative_url }}{% endif %}"
+                              >
+                                {{- grandchild.title -}}
+                              </a>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% else %}
+                        <a
+                          class="dropdown-item {% if page.title == child.title %}active{% endif %}"
+                          href="{% if child.permalink contains '://' %}{{ child.permalink }}{% else %}{{ child.permalink | relative_url }}{% endif %}"
+                        >
+                          {{- child.title -}}
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </li>
+              {% else %}
+                {% assign parent_link = p.permalink | remove: 'index.html' %}
+                <li class="nav-item {% if page.url contains parent_link %}active{% endif %}">
+                  {%- if p.permalink contains '://' -%}
+                    {%- assign url = p.permalink -%}
+                  {%- elsif p.permalink contains '/blog/' -%}
+                    {%- assign url = '/blog/' -%}
+                  {%- else -%}
+                    {%- assign url = p.url -%}
+                  {%- endif %}
+                  <a class="nav-link" href="{{ url | relative_url }}">
+                    {{- p.title }}
+                    {% if page.url contains p.url %}
+                      <span class="sr-only">(current)</span>
+                    {% endif %}
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if site.search_enabled %}
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" type="button" title="Search" aria-label="Open search">
+                <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span>
+              </button>
+            </li>
+          {% endif %}
+          {% if site.enable_darkmode %}
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme">
+                <i class="fa-half-sun-moon" id="light-toggle-system"></i>
+                <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
+                <i class="fa-solid fa-sun" id="light-toggle-light"></i>
+              </button>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% if site.enable_progressbar %}
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  {% endif %}
+</header>
+
+<style>
+  /* Local al-folio extension: stable two-level menu for Nastava.
+     It intentionally does not use Bootstrap's dropdown JS classes. */
+  .nav-multilevel {
+    position: relative;
+  }
+
+  .nav-dropdown-head,
+  .nav-submenu-head {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .nav-dropdown-head > .nav-link,
+  .nav-submenu-link {
+    flex: 1 1 auto;
+  }
+
+  .nav-level1-mobile-toggle,
+  .nav-level2-mobile-toggle {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .nav-level1-menu,
+  .nav-level2-menu {
+    display: none;
+    list-style: none;
+    background: var(--global-bg-color);
+    color: var(--global-text-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 15rem;
+    z-index: 1100;
+  }
+
+  .nav-level1-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+  }
+
+  .nav-submenu {
+    position: relative;
+  }
+
+  .nav-submenu-head {
+    width: 100%;
+  }
+
+  .nav-level2-menu {
+    position: absolute;
+    top: -0.5rem;
+    left: 100%;
+    margin-left: 0;
+  }
+
+  .nav-level1-menu .dropdown-item,
+  .nav-level2-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    color: var(--global-text-color);
+    text-decoration: none;
+    white-space: nowrap;
+    background: transparent;
+  }
+
+  .nav-level1-menu .dropdown-item:hover,
+  .nav-level1-menu .dropdown-item:focus,
+  .nav-level2-menu .dropdown-item:hover,
+  .nav-level2-menu .dropdown-item:focus {
+    color: var(--global-hover-color);
+    background: var(--global-code-bg-color);
+  }
+
+  .nav-level1-menu .dropdown-item.active,
+  .nav-level2-menu .dropdown-item.active {
+    color: var(--global-theme-color);
+    background: transparent;
+    font-weight: 600;
+  }
+
+  .nav-level1-menu .dropdown-divider {
+    border-top: 1px solid var(--global-divider-color);
+    margin: 0.35rem 0;
+  }
+
+  /* Desktop: pure hover. Nothing remains "stuck" after navigation. */
+  @media (min-width: 576px) {
+    .nav-multilevel:hover > .nav-level1-menu,
+    .nav-multilevel:focus-within > .nav-level1-menu {
+      display: block;
+    }
+
+    .nav-submenu:hover > .nav-level2-menu,
+    .nav-submenu:focus-within > .nav-level2-menu {
+      display: block;
+    }
+
+    .nav-submenu-head::after {
+      content: '›';
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem 0 0.15rem;
+      font-size: 1.15em;
+      line-height: 1;
+      pointer-events: none;
+    }
+  }
+
+  /* Mobile: the text is a real link, the arrow button opens the submenu. */
+  @media (max-width: 575.98px) {
+    .navbar .navbar-menu-list {
+      margin-left: 0;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .navbar .navbar-menu-list > .nav-multilevel {
+      width: 100%;
+    }
+
+    .nav-dropdown-head,
+    .nav-submenu-head {
+      width: 100%;
+    }
+
+    .nav-level1-mobile-toggle,
+    .nav-level2-mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 2.65rem;
+      padding: 0.35rem;
+    }
+
+    .nav-level1-menu,
+    .nav-level2-menu {
+      position: static;
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      border-left: 1px solid var(--global-divider-color);
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0 0 0 0.75rem;
+    }
+
+    .nav-multilevel.mobile-open > .nav-level1-menu,
+    .nav-submenu.mobile-open > .nav-level2-menu {
+      display: block;
+    }
+
+    .nav-level1-menu .dropdown-item,
+    .nav-level2-menu .dropdown-item {
+      white-space: normal;
+      text-align: left;
+    }
+
+    .nav-level2-arrow {
+      display: inline-block;
+      transform: rotate(90deg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.querySelector('#navbar');
+    if (!navbar) return;
+
+    const mobile = window.matchMedia('(max-width: 575.98px)');
+    const topMenus = navbar.querySelectorAll('.nav-multilevel');
+    const submenus = navbar.querySelectorAll('.nav-submenu');
+
+    function closeAllMobileMenus() {
+      topMenus.forEach(function (item) {
+        item.classList.remove('mobile-open');
+        const button = item.querySelector(':scope > .nav-dropdown-head > .nav-level1-mobile-toggle');
+        if (button) button.setAttribute('aria-expanded', 'false');
+      });
+      submenus.forEach(function (item) {
+        item.classList.remove('mobile-open');
+        const button = item.querySelector(':scope > .nav-submenu-head > .nav-level2-mobile-toggle');
+        if (button) button.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    topMenus.forEach(function (item) {
+      const button = item.querySelector(':scope > .nav-dropdown-head > .nav-level1-mobile-toggle');
+      if (!button) return;
+      button.addEventListener('click', function (event) {
+        if (!mobile.matches) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const open = !item.classList.contains('mobile-open');
+        closeAllMobileMenus();
+        if (open) {
+          item.classList.add('mobile-open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    submenus.forEach(function (item) {
+      const button = item.querySelector(':scope > .nav-submenu-head > .nav-level2-mobile-toggle');
+      if (!button) return;
+      button.addEventListener('click', function (event) {
+        if (!mobile.matches) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const open = !item.classList.contains('mobile-open');
+        submenus.forEach(function (other) {
+          other.classList.remove('mobile-open');
+          const otherButton = other.querySelector(':scope > .nav-submenu-head > .nav-level2-mobile-toggle');
+          if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+        });
+        if (open) {
+          item.classList.add('mobile-open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* On mobile, close after following a genuine page link. */
+    navbar.querySelectorAll('a.nav-link, a.dropdown-item').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (mobile.matches) closeAllMobileMenus();
+      });
+    });
+
+    mobile.addEventListener('change', closeAllMobileMenus);
+  });
+</script>

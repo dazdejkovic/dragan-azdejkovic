@@ -1,0 +1,6 @@
+Izmene menija Nastava (v3)
+- Dvonivojski meni je izdvojen od Bootstrap dropdown mehanizma.
+- Na desktopu oba nivoa rade preko hover/focus i zatvaraju se po izlasku iz menija.
+- Meni ostaje dostupan i nakon ulaska na stranicu predmeta.
+- Na mobilnom tekst je link, a strelica otvara/zatvara podmeni.
+- Dodat predmet Doktorske studije > Teorija igara - D.
