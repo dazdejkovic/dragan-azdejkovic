@@ -20,19 +20,57 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 ## Nastavni materijali
 
-- **Predavanja** — prezentacije, beleške i prateći PDF dokumenti;
-- **Vežbe** — zadaci, primeri, Excel i Python fajlovi;
-- **Domaći zadaci** — tekstovi zadataka, rokovi i eventualna rešenja;
-- **Studije slučaja** — poslovni problemi i skupovi podataka;
-- **Ispitni zadaci** — primeri kolokvijuma i ispita;
-- **Literatura** — osnovna i dodatna literatura.
+{% assign materijali = site.static_files | where_exp: "file", "file.path contains '/assets/nastava/matematika/materijali/'" | sort: "path" %}
 
-## Dodavanje fajlova
+{% if materijali.size > 0 %}
 
-Fajlove za ovaj predmet postavite u:
+{% assign trenutni_folder = "" %}
 
-```text
-assets/pdf/nastava/matematika/
-```
+{% for file in materijali %}
 
-Unutar foldera već postoje podfolderi `predavanja`, `vezbe`, `domaci`, `studije-slucaja` i `ispiti`.
+  {% assign relativno = file.path | remove_first: "/assets/nastava/matematika/materijali/" %}
+  {% assign delovi = relativno | split: "/" %}
+
+  {% if delovi.size > 1 %}
+    {% assign folder = delovi[0] %}
+  {% else %}
+    {% assign folder = "razno" %}
+  {% endif %}
+
+  {% if folder != trenutni_folder %}
+
+    {% unless trenutni_folder == "" %}
+</ul>
+    {% endunless %}
+
+    {% case folder %}
+      {% when "kolokvijumi" %}
+<h3>Kolokvijumi</h3>
+      {% when "ispitni-zadaci" %}
+<h3>Ispitni zadaci</h3>
+      {% when "vezbe" %}
+<h3>Vežbe</h3>
+      {% when "domaci-zadaci" %}
+<h3>Domaći zadaci</h3>
+      {% when "razno" %}
+<h3>Razno</h3>
+      {% else %}
+<h3>{{ folder | replace: "-", " " | replace: "_", " " | capitalize }}</h3>
+    {% endcase %}
+
+<ul>
+
+    {% assign trenutni_folder = folder %}
+  {% endif %}
+
+<li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+Trenutno nema postavljenih materijala.
+
+{% endif %}
