@@ -20,57 +20,52 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 ## Nastavni materijali
 
-{% assign materijali = site.static_files | where_exp: "file", "file.path contains '/assets/nastava/matematika/materijali/'" | sort: "path" %}
+{% assign svi_fajlovi = site.static_files | sort: "name" %}
 
-{% if materijali.size > 0 %}
-
-{% assign trenutni_folder = "" %}
-
-{% for file in materijali %}
-
-  {% assign relativno = file.path | remove_first: "/assets/nastava/matematika/materijali/" %}
-  {% assign delovi = relativno | split: "/" %}
-
-  {% if delovi.size > 1 %}
-    {% assign folder = delovi[0] %}
-  {% else %}
-    {% assign folder = "razno" %}
-  {% endif %}
-
-  {% if folder != trenutni_folder %}
-
-    {% unless trenutni_folder == "" %}
-</ul>
-    {% endunless %}
-
-    {% case folder %}
-      {% when "kolokvijumi" %}
-<h3>Kolokvijumi</h3>
-      {% when "ispitni-zadaci" %}
-<h3>Ispitni zadaci</h3>
-      {% when "vezbe" %}
-<h3>Vežbe</h3>
-      {% when "domaci-zadaci" %}
-<h3>Domaći zadaci</h3>
-      {% when "razno" %}
-<h3>Razno</h3>
-      {% else %}
-<h3>{{ folder | replace: "-", " " | replace: "_", " " | capitalize }}</h3>
-    {% endcase %}
+### Vežbe i domaći zadaci
 
 <ul>
-
-    {% assign trenutni_folder = folder %}
+{% for file in svi_fajlovi %}
+  {% if file.path contains '/assets/nastava/matematika/materijali/Vezbe_domaci-zadaci/' %}
+    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+      <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
+    {% endif %}
   {% endif %}
-
-<li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
-
 {% endfor %}
-
 </ul>
 
-{% else %}
+### Kolokvijumi
 
-Trenutno nema postavljenih materijala.
+<ul>
+{% for file in svi_fajlovi %}
+  {% if file.path contains '/assets/nastava/matematika/materijali/Kolokvijumi/' %}
+    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+      <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</ul>
 
-{% endif %}
+### Ispitni zadaci
+
+<ul>
+{% for file in svi_fajlovi %}
+  {% if file.path contains '/assets/nastava/matematika/materijali/ispitni-zadaci/' %}
+    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+      <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</ul>
+
+### Razno
+
+<ul>
+{% for file in svi_fajlovi %}
+  {% if file.path contains '/assets/nastava/matematika/materijali/Razno/' %}
+    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+      <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</ul>

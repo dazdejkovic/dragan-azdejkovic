@@ -1,20 +1,20 @@
 ---
 layout: page
-permalink: /publications/
 title: Publikacije
-description: Naučni i stručni radovi po godinama i kategorijama.
+permalink: /publications/
+description: Knjige, naučni i stručni radovi.
 nav: true
-nav_order: 2
+nav_order: 3
 ---
-
-<!-- _pages/publications.md -->
-
-<!-- Bibsearch Feature -->
-
-{% include bib_search.liquid %}
 
 <div class="publications">
 
-{% bibliography %}
+## Knjige
+
+{% bibliography --query @*[keywords=knjige] --prefix knjige %}
+
+## Radovi
+
+{% bibliography --query @*[keywords=radovi] --prefix radovi %}
 
 </div>

@@ -331,8 +331,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Azdejković]
+  first_name: [Dragan]
 
   style: apa
   locale: en
@@ -349,7 +349,7 @@ scholar:
   join_strings: true
 
   details_dir: bibliography
-  details_link: Details
+  details_link: Detalji
 
   query: "@*"
   group_by: year
