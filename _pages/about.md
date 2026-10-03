@@ -47,40 +47,40 @@ Na ovom sajtu dostupni su podaci o mom radu, publikacijama i projektima, kao i n
 Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini boćanja metalnim kuglama. U oba sporta nastupam u Prvoj ligi Srbije, a u bridžu sam višestruki prvak Srbije.
 
 <div class="home-counter">
-  Посете: <span id="brojac"></span>
+  Посете: <span id="brojac">...</span>
 </div>
 
 <!-- GoatCounter: beleženje poseta -->
 <script
   data-goatcounter="https://dazdejkovic.goatcounter.com/count"
+  async
   src="https://gc.zgo.at/count.js">
 </script>
 
 <!-- GoatCounter: prikaz ukupnog broja poseta -->
 <script>
-  window.goatcounter.visit_count({
-    append: '#brojac',
-    path: 'TOTAL',
-    no_branding: true,
-    style: `
-      div {
-        display: inline !important;
-        border: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        background: transparent !important;
-        color: inherit !important;
-        font: inherit !important;
-      }
-      #gcvc-for, #gcvc-by {
-        display: none !important;
-      }
-      #gcvc-views {
-        font: inherit !important;
-        color: inherit !important;
-      }
-    `
+(function () {
+  var r = new XMLHttpRequest();
+
+  r.addEventListener("load", function () {
+    if (r.status >= 200 && r.status < 300) {
+      var data = JSON.parse(r.responseText);
+      document.getElementById("brojac").textContent = data.count;
+    } else {
+      document.getElementById("brojac").textContent = "—";
+    }
   });
+
+  r.addEventListener("error", function () {
+    document.getElementById("brojac").textContent = "—";
+  });
+
+  r.open(
+    "GET",
+    "https://dazdejkovic.goatcounter.com/counter/TOTAL.json"
+  );
+  r.send();
+})();
 </script>
 
 <style>
@@ -91,10 +91,6 @@ Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini
   text-align: right;
   font-size: 0.85rem;
   color: var(--global-text-color-light);
-}
-
-#brojac {
-  display: inline;
 }
 </style>
 
