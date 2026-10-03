@@ -51,13 +51,17 @@ Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini
 </div>
 
 <script>
-var t = setInterval(function () {
+var gcTimer = setInterval(function () {
   if (window.goatcounter && window.goatcounter.visit_count) {
-    clearInterval(t);
+    clearInterval(gcTimer);
     window.goatcounter.visit_count({
       append: '#brojac',
-      path: '/',
-      no_branding: true
+      path: 'TOTAL',
+      no_branding: true,
+      attr: {
+        width: '90',
+        height: '35'
+      }
     });
   }
 }, 100);
@@ -65,6 +69,7 @@ var t = setInterval(function () {
 
 <script
   data-goatcounter="https://dazdejkovic.goatcounter.com/count"
+  data-goatcounter-settings='{"allow_local": true}'
   async
   src="https://gc.zgo.at/count.js">
 </script>
@@ -78,4 +83,19 @@ var t = setInterval(function () {
   font-size: 0.85rem;
   color: var(--global-text-color-light);
 }
+
+#brojac {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 90px;
+}
+
+#brojac > div {
+  display: inline-block !important;
+  width: 90px !important;
+  height: 35px !important;
+  margin: 0 0 0 0.35rem !important;
+  padding: 0 !important;
+}
 </style>
+

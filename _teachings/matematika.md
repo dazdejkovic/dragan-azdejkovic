@@ -26,8 +26,10 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 <ul>
 {% for file in svi_fajlovi %}
-  {% if file.path contains '/assets/nastava/matematika/materijali/Vezbe_domaci-zadaci/' %}
-    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+  {% assign p = file.path | downcase %}
+  {% assign ext = file.extname | downcase %}
+  {% if p contains '/assets/nastava/matematika/materijali/vezbe_domaci-zadaci/' %}
+    {% if ext == '.pdf' or ext == '.zip' %}
       <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
     {% endif %}
   {% endif %}
@@ -38,8 +40,10 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 <ul>
 {% for file in svi_fajlovi %}
-  {% if file.path contains '/assets/nastava/matematika/materijali/Kolokvijumi/' %}
-    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+  {% assign p = file.path | downcase %}
+  {% assign ext = file.extname | downcase %}
+  {% if p contains '/assets/nastava/matematika/materijali/kolokvijumi/' %}
+    {% if ext == '.pdf' or ext == '.zip' %}
       <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
     {% endif %}
   {% endif %}
@@ -50,8 +54,10 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 <ul>
 {% for file in svi_fajlovi %}
-  {% if file.path contains '/assets/nastava/matematika/materijali/ispitni-zadaci/' %}
-    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+  {% assign p = file.path | downcase %}
+  {% assign ext = file.extname | downcase %}
+  {% if p contains '/assets/nastava/matematika/materijali/ispitni-zadaci/' %}
+    {% if ext == '.pdf' or ext == '.zip' %}
       <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
     {% endif %}
   {% endif %}
@@ -62,8 +68,10 @@ Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
 <ul>
 {% for file in svi_fajlovi %}
-  {% if file.path contains '/assets/nastava/matematika/materijali/Razno/' %}
-    {% if file.extname == '.pdf' or file.extname == '.zip' %}
+  {% assign p = file.path | downcase %}
+  {% assign ext = file.extname | downcase %}
+  {% if p contains '/assets/nastava/matematika/materijali/razno/' %}
+    {% if ext == '.pdf' or ext == '.zip' %}
       <li><a href="{{ file.path | relative_url }}">{{ file.name }}</a></li>
     {% endif %}
   {% endif %}
