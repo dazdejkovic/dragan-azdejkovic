@@ -250,30 +250,29 @@
     width: 12% !important;
   }
 }
-</style> <p>Ja sam <strong>dr Dragan Azdejković</strong>, vanredni profesor na Katedri za statistiku i matematiku Ekonomskog fakulteta Univerziteta u Beogradu.</p> <p>Diplomirao sam 1989. godine na Matematičkom fakultetu Univerziteta u Beogradu, na odseku Numerička matematika i optimizacija, smer optimizacija. Magistarske studije iz optimizacije završio sam 1998. godine, a doktorsku disertaciju <em>Analiza i metode optimizacije procesa kolektivnog odlučivanja</em> odbranio sam 2012. godine na Ekonomskom fakultetu Univerziteta u Beogradu.</p> <p>Na Ekonomskom fakultetu radim od 1990. godine. Tokom dosadašnjeg nastavnog rada bio sam angažovan na predmetima Matematika, Teorija odlučivanja, Teorija i modeli odlučivanja, Matematička ekonomija, Teorijska statistika, Poslovna analitika, Operaciona istraživanja, Osnovi operacionih istraživanja i Teorija igara. Na master studijama izvodim nastavu iz oblasti menadžerskog odlučivanja, upravljanja rizicima, teorije igara i forenzičke analitike, a učestvujem i u nastavi na programu Londonske škole ekonomije.</p> <p>Moj naučnoistraživački rad usmeren je na primenu i analizu matematičkih modela u ekonomskim i društvenim problemima, posebno u oblastima teorije odlučivanja, teorije igara, kolektivnog odlučivanja i operacionih istraživanja. Autor sam i koautor naučnih radova, univerzitetskih udžbenika i zbirki zadataka, učestvovao sam u više domaćih i međunarodnih projekata i aktivan sam kao recenzent naučnih časopisa.</p> <p>Na ovom sajtu dostupni su podaci o mom radu, publikacijama i projektima, kao i nastavni materijali za predmete na osnovnim, master i doktorskim studijama. Za svaki predmet predviđene su posebne celine za predavanja, vežbe, domaće zadatke, studije slučaja i ispitne zadatke.</p> <h2 id="oblasti-interesovanja">Oblasti interesovanja</h2> <ul> <li>operaciona istraživanja i optimizacija;</li> <li>teorija igara i kolektivno odlučivanje;</li> <li>poslovna analitika i mašinsko učenje;</li> <li>simulacije i modeli odlučivanja;</li> <li>forenzička analitika i upravljanje rizicima.</li> </ul> <p>Pored akademskog rada, aktivno se takmičim u <strong>bridžu</strong> i <strong>volu</strong>, disciplini boćanja metalnim kuglama. U oba sporta nastupam u Prvoj ligi Srbije, a u bridžu sam višestruki prvak Srbije.</p> <div class="home-counter"> Посете: <span id="brojac"></span> </div> <script data-goatcounter="https://dazdejkovic.goatcounter.com/count" src="https://gc.zgo.at/count.js"> </script> <script>
-  window.goatcounter.visit_count({
-    append: '#brojac',
-    path: 'TOTAL',
-    no_branding: true,
-    style: `
-      div {
-        display: inline !important;
-        border: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        background: transparent !important;
-        color: inherit !important;
-        font: inherit !important;
-      }
-      #gcvc-for, #gcvc-by {
-        display: none !important;
-      }
-      #gcvc-views {
-        font: inherit !important;
-        color: inherit !important;
-      }
-    `
+</style> <p>Ja sam <strong>dr Dragan Azdejković</strong>, vanredni profesor na Katedri za statistiku i matematiku Ekonomskog fakulteta Univerziteta u Beogradu.</p> <p>Diplomirao sam 1989. godine na Matematičkom fakultetu Univerziteta u Beogradu, na odseku Numerička matematika i optimizacija, smer optimizacija. Magistarske studije iz optimizacije završio sam 1998. godine, a doktorsku disertaciju <em>Analiza i metode optimizacije procesa kolektivnog odlučivanja</em> odbranio sam 2012. godine na Ekonomskom fakultetu Univerziteta u Beogradu.</p> <p>Na Ekonomskom fakultetu radim od 1990. godine. Tokom dosadašnjeg nastavnog rada bio sam angažovan na predmetima Matematika, Teorija odlučivanja, Teorija i modeli odlučivanja, Matematička ekonomija, Teorijska statistika, Poslovna analitika, Operaciona istraživanja, Osnovi operacionih istraživanja i Teorija igara. Na master studijama izvodim nastavu iz oblasti menadžerskog odlučivanja, upravljanja rizicima, teorije igara i forenzičke analitike, a učestvujem i u nastavi na programu Londonske škole ekonomije.</p> <p>Moj naučnoistraživački rad usmeren je na primenu i analizu matematičkih modela u ekonomskim i društvenim problemima, posebno u oblastima teorije odlučivanja, teorije igara, kolektivnog odlučivanja i operacionih istraživanja. Autor sam i koautor naučnih radova, univerzitetskih udžbenika i zbirki zadataka, učestvovao sam u više domaćih i međunarodnih projekata i aktivan sam kao recenzent naučnih časopisa.</p> <p>Na ovom sajtu dostupni su podaci o mom radu, publikacijama i projektima, kao i nastavni materijali za predmete na osnovnim, master i doktorskim studijama. Za svaki predmet predviđene su posebne celine za predavanja, vežbe, domaće zadatke, studije slučaja i ispitne zadatke.</p> <h2 id="oblasti-interesovanja">Oblasti interesovanja</h2> <ul> <li>operaciona istraživanja i optimizacija;</li> <li>teorija igara i kolektivno odlučivanje;</li> <li>poslovna analitika i mašinsko učenje;</li> <li>simulacije i modeli odlučivanja;</li> <li>forenzička analitika i upravljanje rizicima.</li> </ul> <p>Pored akademskog rada, aktivno se takmičim u <strong>bridžu</strong> i <strong>volu</strong>, disciplini boćanja metalnim kuglama. U oba sporta nastupam u Prvoj ligi Srbije, a u bridžu sam višestruki prvak Srbije.</p> <div class="home-counter"> Посете: <span id="brojac">...</span> </div> <script data-goatcounter="https://dazdejkovic.goatcounter.com/count" async="" src="https://gc.zgo.at/count.js"> </script> <script>
+(function () {
+  var r = new XMLHttpRequest();
+
+  r.addEventListener("load", function () {
+    if (r.status >= 200 && r.status < 300) {
+      var data = JSON.parse(r.responseText);
+      document.getElementById("brojac").textContent = data.count;
+    } else {
+      document.getElementById("brojac").textContent = "—";
+    }
   });
+
+  r.addEventListener("error", function () {
+    document.getElementById("brojac").textContent = "—";
+  });
+
+  r.open(
+    "GET",
+    "https://dazdejkovic.goatcounter.com/counter/TOTAL.json"
+  );
+  r.send();
+})();
 </script> <style>
 .home-counter {
   margin-top: 2rem;
@@ -282,10 +281,6 @@
   text-align: right;
   font-size: 0.85rem;
   color: var(--global-text-color-light);
-}
-
-#brojac {
-  display: inline;
 }
 </style> </div> <h2> <a href="/dragan-azdejkovic/news/" style="color: inherit">Vesti</a> </h2> <div class="news"> <div class="table-responsive"> <table class="table table-sm table-borderless"> <tr> <th scope="row" style="width: 20%">Sep 15, 2026</th> <td> Sajt je u pripremi. Nastavni materijali i obaveštenja biće postepeno dodavani. </td> </tr> </table> </div> </div> <h2> <a href="/dragan-azdejkovic/publications/" style="color: inherit">Izabrane publikacije</a> </h2> <div class="publications"> <ol class="bibliography"></ol> </div> <div class="social"> <div class="contact-icons"><a href="/dragan-azdejkovic/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a></div> <div class="contact-note">Univerzitet u Beogradu – Ekonomski fakultet, Katedra za statistiku i matematiku. </div> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Dragan Azdejković. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
   window.alFolio = {
