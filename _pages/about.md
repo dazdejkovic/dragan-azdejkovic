@@ -7,7 +7,7 @@ profile:
   align: right
   image: Dragan-Azdejkovic-2.webp
   image_circular: false
-  more_info: 
+  more_info:
 selected_papers: true
 social: true
 announcements:
@@ -47,13 +47,10 @@ Na ovom sajtu dostupni su podaci o mom radu, publikacijama i projektima, kao i n
 Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini boćanja metalnim kuglama. U oba sporta nastupam u Prvoj ligi Srbije, a u bridžu sam višestruki prvak Srbije.
 
 <div class="home-counter">
-  <span>Посете:</span>
-  <img
-    src="https://dazdejkovic.goatcounter.com/counter/TOTAL.svg?no_branding=1"
-    alt="Broj poseta"
-    class="goatcounter-total">
+  Посете: <span class="home-counter-number">{{ site.data.goatcounter.total | default: "2" }}</span>
 </div>
 
+<!-- GoatCounter samo beleži posete. Broj iznad Jekyll već ugrađuje u HTML. -->
 <script
   data-goatcounter="https://dazdejkovic.goatcounter.com/count"
   async
@@ -68,16 +65,9 @@ Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini
   text-align: right;
   font-size: 0.85rem;
   color: var(--global-text-color-light);
-  white-space: nowrap;
 }
 
-.goatcounter-total {
-  display: inline-block;
-  width: 120px;
-  height: auto;
-  vertical-align: middle;
-  margin-left: 0.25rem;
-  border: 0;
+.home-counter-number {
+  font-weight: 600;
 }
 </style>
-
