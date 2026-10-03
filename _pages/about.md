@@ -48,16 +48,12 @@ Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini
 
 <div class="home-counter">
   <span>Посете:</span>
-  <iframe
-    src="https://dazdejkovic.goatcounter.com/counter/TOTAL.html?no_branding=1"
-    title="Broj poseta"
-    loading="lazy"
-    scrolling="no"
-    frameborder="0">
-  </iframe>
+  <img
+    src="https://dazdejkovic.goatcounter.com/counter/TOTAL.svg?no_branding=1"
+    alt="Broj poseta"
+    class="goatcounter-total">
 </div>
 
-<!-- GoatCounter: beleženje poseta -->
 <script
   data-goatcounter="https://dazdejkovic.goatcounter.com/count"
   async
@@ -75,13 +71,13 @@ Pored akademskog rada, aktivno se takmičim u **bridžu** i **volu**, disciplini
   white-space: nowrap;
 }
 
-.home-counter iframe {
-  width: 95px;
-  height: 34px;
-  border: 0;
+.goatcounter-total {
+  display: inline-block;
+  width: 120px;
+  height: auto;
   vertical-align: middle;
   margin-left: 0.25rem;
-  overflow: hidden;
+  border: 0;
 }
 </style>
 
