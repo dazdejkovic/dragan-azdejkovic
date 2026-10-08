@@ -5,13 +5,10 @@ title: Matematika
 opis: Matematičke osnove i metode koje se primenjuju u ekonomiji.
 nivo: Osnovne studije
 godina: 2026/2027
-term: ""
 lokacija: Ekonomski fakultet Univerziteta u Beogradu
 course_id: matematika
 nav_order: 1
 ---
-
-## O predmetu
 
 Matematičke osnove i metode koje se primenjuju u ekonomiji.
 
